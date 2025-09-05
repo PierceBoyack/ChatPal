@@ -1,0 +1,7 @@
+psutil==7.0.0
+pvporcupine==3.0.5
+pvrecorder==1.2.7
+PyAudio==0.2.14
+python-dotenv==1.1.1
+SpeechRecognition==3.14.3
+typing_extensions==4.15.0
