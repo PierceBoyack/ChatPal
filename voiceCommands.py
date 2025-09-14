@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 import pvporcupine
 from pvrecorder import PvRecorder
+import sounddevice
 import speech_recognition as sr
 import pyaudio
 import psutil
@@ -12,9 +13,10 @@ picokey = os.getenv("PICOKEY")
 porcupine = pvporcupine.create(
   access_key=picokey,
   keywords=["picovoice"]
+  
 )
 
-recorder = PvRecorder(device_index=1, frame_length=porcupine.frame_length)
+recorder = PvRecorder(frame_length=porcupine.frame_length)
 recorder.start()
 
 def testCommand():
@@ -30,6 +32,7 @@ def closeRecorder():
   recorder.delete()
   porcupine.delete()
 
+
 def speechToText():
   recognizer = sr.Recognizer()
   with sr.Microphone() as source:
@@ -37,7 +40,8 @@ def speechToText():
     try:
       text = recognizer.recognize_google(audio, language="en-US")
       print(f"You said: {text}")
-    except:
+    except Exception as e:
+      print(e)
       print("Please try again")
 
 def get_ram_usage():

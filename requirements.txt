@@ -1,7 +1,10 @@
+cffi==2.0.0
 psutil==7.0.0
 pvporcupine==3.0.5
 pvrecorder==1.2.7
 PyAudio==0.2.14
+pycparser==2.23
 python-dotenv==1.1.1
+sounddevice==0.5.2
 SpeechRecognition==3.14.3
 typing_extensions==4.15.0
