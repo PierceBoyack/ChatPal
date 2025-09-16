@@ -4,6 +4,7 @@ import pvporcupine
 from pvrecorder import PvRecorder
 import speech_recognition as sr
 import pyaudio
+import sounddevice
 import psutil
 from geminiFunctions import geminiChatRequest
 
