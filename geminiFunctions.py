@@ -100,7 +100,7 @@ def geminiChatRequest(prompt: str, chat: Optional[Chat] = None, model: str="gemi
       config=genaiTypes.GenerateContentConfig(
           thinking_config=genaiTypes.ThinkingConfig(thinking_budget=-1), # 0 Disables thinking, -1 Dynamic thinking
           system_instruction=systemInstruction,
-          max_output_tokens=20000
+          max_output_tokens=10000
         )
     )
   try:

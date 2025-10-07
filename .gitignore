@@ -1,3 +1,6 @@
 /venv
 .env
 /__pycache__
+test.wav
+/models
+Hey-Chat-Pal_en_raspberry-pi_v3_0_0.ppn
