@@ -85,7 +85,7 @@ if __name__ == "__main__":
           model="gemini-2.5-flash"
         )      
       if geminiResponse == None:
-        print("Error has occured")        
+        print("Error has occured")
         
-      print("\nPrompt Ended")
+      print("Prompt Ended")
       recorder.start()
