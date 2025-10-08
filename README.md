@@ -46,5 +46,5 @@ You can also purchase a mircophone breakout from Adafruit or another company. Th
 
 I use Picovoice for wake word detection. You can train custom wake words on their website. I use a custom version in main.py.
 
-TTS is done using Piper: https://github.com/OHF-Voice/piper1-gpl/tree/main
+TTS is done using Piper: https://github.com/OHF-Voice/piper1-gpl/tree/main .
 If you want to use TTS, you will have to download a voice model found in this repository and also give your Pi a way to output sound. I am using a USB speaker: https://www.adafruit.com/product/3369
