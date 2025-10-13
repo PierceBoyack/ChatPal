@@ -5,7 +5,7 @@ from pvrecorder import PvRecorder
 import speech_recognition as sr
 import pyaudio
 import psutil
-from geminiFunctions import geminiChatRequest
+from geminiFunctions import geminiManualChat
 
 load_dotenv()
 
@@ -59,7 +59,7 @@ def get_ram_usage():
   return mem_info.rss / 1024 ** 2 # Convert bytes to MiB
 
 if __name__ == "__main__":
-  geminiChat = None
+  geminiHistory = []
   while True:
     detectWake = processAudio()
     if detectWake != -1:
@@ -73,15 +73,15 @@ if __name__ == "__main__":
         recorder.start()
         continue
       if userPrompt == "reset chat":
-        geminiChat = None
+        geminiHistory = []
         print("\nChat Reset")
         print("Prompt Ended")
         recorder.start()
         continue
 
-      geminiResponse, geminiChat = geminiChatRequest(
+      geminiResponse, geminiHistory = geminiManualChat(
           prompt=userPrompt,
-          chat=geminiChat,
+          history=geminiHistory,
           model="gemini-2.5-flash"
         )      
       if geminiResponse == None:
