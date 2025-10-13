@@ -6,7 +6,7 @@ import speech_recognition as sr
 import pyaudio
 import sounddevice
 import psutil
-from geminiFunctions import geminiChatRequest
+from geminiFunctions import geminiManualChat
 from textToSpeech import tts
 
 load_dotenv()
@@ -14,7 +14,7 @@ load_dotenv()
 picokey = os.getenv("PICO_KEY")
 porcupine = pvporcupine.create(
   access_key=picokey,
-  keyword_paths=["Hey-Chat-Pal_en_raspberry-pi_v3_0_0.ppn"]
+  keywords=["picovoice"]
 )
 
 recorder = PvRecorder(device_index=-1, frame_length=porcupine.frame_length)
@@ -58,10 +58,10 @@ def get_ram_usage():
   """Returns the current RAM usage of the process in MiB"""
   process = psutil.Process(os.getpid())
   mem_info = process.memory_info()
-  print(mem_info.rss / 1024 ** 2) # Convert bytes to MiB
+  return mem_info.rss / 1024 ** 2 # Convert bytes to MiB
 
 if __name__ == "__main__":
-  geminiChat = None
+  geminiHistory = []
   while True:
     detectWake = processAudio()
     if detectWake != -1:
@@ -75,22 +75,21 @@ if __name__ == "__main__":
         recorder.start()
         continue
       if userPrompt == "reset chat":
-        geminiChat = None
+        geminiHistory = []
         print("\nChat Reset")
         print("Prompt Ended")
         recorder.start()
         continue
 
-      geminiResponse, geminiChat = geminiChatRequest(
+      geminiResponse, geminiHistory = geminiManualChat(
           prompt=userPrompt,
-          chat=geminiChat,
+          history=geminiHistory,
           model="gemini-2.5-flash"
         )      
       if geminiResponse == None:
         print("Error has occured")
       else:
         tts(geminiResponse)
-        get_ram_usage() 
         
       print("Prompt Ended")
       recorder.start()
