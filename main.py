@@ -60,6 +60,8 @@ def get_ram_usage():
   mem_info = process.memory_info()
   return mem_info.rss / 1024 ** 2 # Convert bytes to MiB
 
+#Add volume control
+
 if __name__ == "__main__":
   geminiHistory = []
   while True:

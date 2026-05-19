@@ -1,3 +1,5 @@
+This project is a voice controlled AI assistant for Raspberry PI. It uses memory, thinking, and, grounding budgets to maintain a powerful, but cost-effective agent on a small device.
+
 This project was built for use on a 64-bit Raspberry Pi system. In particular, I used a Raspberry Pi 5 with 2GB RAM.
 
 Some important requirements and need-to-knows:
